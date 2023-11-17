@@ -1,0 +1,43 @@
+name: sigmaT
+channels:
+  - conda-forge
+dependencies:
+  - python=3.9
+  - bottleneck
+  - scipy
+  - xarray
+  - regionmask
+  - cmocean
+  - numpy==1.23
+  - dask
+  - pandas
+  - statsmodels
+  - nc-time-axis
+  - cartopy
+  - yaml
+  - ipykernel
+  - matplotlib
+  - seaborn
+  - netcdf4
+  - scikit-learn
+  - h5netcdf
+  - cfgrib
+  - zarr
+  - cftime
+  - pynio
+  - xlrd
+  - rasterio
+  - openpyxl
+  - ca-certificates
+  - certifi
+  - openssl
+  - arch-py
+  - sympy
+  - pymc>=5
+  - numba
+  - tbb
+  - libpysal
+  - esda
+  - pip:
+    - git+https://github.com/pymc-devs/pymc-experimental.git
+
