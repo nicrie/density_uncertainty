@@ -2,7 +2,7 @@
 
 This repository contains the code for the paper <TBD> by <TBD>.
 
-This repository helps you to make predictions of oceanic surface density $\sigma_T$ using your own data. You can find an example of how to use the code in [this notebook](example.ipynb)
+This repository helps you to make predictions of oceanic surface density $\sigma_T$ using your own data. You can find an example of how to use the code in [this notebook](tutorial.ipynb)
 
 
 ## Installation
@@ -18,7 +18,7 @@ conda activate sigmaT
 
 ## Usage
 
-Check out the [example notebook](example.ipynb) to see how to use the code to make predictions of $\sigma_T$.
+Check out the [example notebook](tutorial.ipynb) to see how to use the code to make predictions of $\sigma_T$.
 
 ## License
 [MIT](https://choosealicense.com/licenses/mit/)
