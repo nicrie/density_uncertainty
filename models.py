@@ -1,11 +1,11 @@
-import pandas as pd
 import numpy as np
+import pandas as pd
 from sklearn.metrics.pairwise import haversine_distances
 
 from pymc_models import MODELS
+from utils.constants import AVG_EARTH_RADIUS
 from utils.kernels import bisquare_kernel
 from utils.linalg import ones_vector
-from utils.constants import AVG_EARTH_RADIUS
 
 
 def load_model(name: str):
@@ -22,7 +22,7 @@ def load_model(name: str):
         Trained model.
 
     """
-    model = MODELS[name].load(f"data/regression/{name}/model.nc")
+    model = MODELS[name].load(f"data/regression/full/{name}/model.nc")
     return model
 
 
@@ -36,17 +36,17 @@ def nystroem_approximation(latlons: pd.DataFrame):
 
     """
     # Cluster centroids
-    centroids = pd.read_csv("data/esf/centroids.csv").values
+    centroids = pd.read_csv("data/esf/full/centroids.csv").values
     n_clusters = centroids.shape[0]
     rads_centroids = np.deg2rad(centroids)
     # Regularized kernel matrix of centroids
-    CLplus = pd.read_csv("data/esf/CLplus.csv").values
+    CLplus = pd.read_csv("data/esf/full/CLplus.csv").values
     # Eigenvectors of the regularized kernel matrix
-    EL = pd.read_csv("data/esf/EL.csv")  # Eigenvectors of the Laplacian
+    EL = pd.read_csv("data/esf/full/EL.csv")  # Eigenvectors of the Laplacian
     col_names = EL.columns
     EL = EL.values
     # eigenvalues of the regularized kernel matrix
-    eigvalsL = pd.read_csv("data/esf/eigvalsL.csv", index_col=0).values.squeeze()
+    eigvalsL = pd.read_csv("data/esf/full/eigvalsL.csv").values.squeeze()
 
     # Coordinates of new samples
     n_samples = latlons.shape[0]

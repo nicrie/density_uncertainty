@@ -7,11 +7,12 @@ from cartopy.crs import PlateCarree, Robinson
 from cartopy.feature import LAND, OCEAN
 
 # %%
-data = pd.read_csv("data/esf/database_clustered.csv")
-centroids = pd.read_csv("data/esf/centroids.csv")
+data = pd.read_csv("data/esf/full/database_clustered.csv")
+centroids = pd.read_csv("data/esf/full/centroids.csv")
 n_clusters = centroids.shape[0]
 
 # %%
+
 fig = plt.figure()
 ax = fig.add_subplot(111, projection=Robinson())
 ax.add_feature(LAND, color=".8")
@@ -73,8 +74,8 @@ sns.scatterplot(
 )
 sns.scatterplot(
     data=centroids,
-    x="lonc",
-    y="latc",
+    x="lon",
+    y="lat",
     ax=ax,
     label="centroids",
     s=40,
