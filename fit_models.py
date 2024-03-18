@@ -1,24 +1,14 @@
 # %%
-# import multiprocessing as mp
-
 import os
 import warnings
 from importlib import reload
-from pprint import pprint
 
 import arviz as az
-import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
 import pymc as pm
-import seaborn as sns
-import xarray as xr
-from esda.moran import Moran
-from libpysal.weights import full2W
-
 import pymc_models
 
-# mp.set_start_method("forkserver")
 warnings.simplefilter("ignore")
 
 
@@ -86,8 +76,9 @@ def get_rhs_config(exp: str, model_name: str, X: pd.DataFrame):
     }
 
 
+# %%
 if __name__ == "__main__":
-    # %%
+
     # Load data
     # =============================================================================
     print("Loading data...")
@@ -98,7 +89,6 @@ if __name__ == "__main__":
     for exp in EXPERIMENTS:
         files[exp] = load_files(f"data/esf/{exp}")
 
-    # %%
     # Prepare data
     # =============================================================================
     print("Preparing data...")
@@ -126,7 +116,6 @@ if __name__ == "__main__":
         file_path = os.path.join(path, "database_extended.csv")
         data_ext[exp].to_csv(file_path, index=False)
 
-    # %%
     # Model configuration
     # =============================================================================
     print("Configuring models...")
@@ -210,7 +199,6 @@ if __name__ == "__main__":
     models = {}
     idata = {}
 
-    # %%
     # Run models
     # =============================================================================
     print("Fit models...")
@@ -250,3 +238,5 @@ if __name__ == "__main__":
 
             models[exp][name] = m
             idata[exp][name] = infdata
+
+# %%

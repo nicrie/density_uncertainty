@@ -2,9 +2,8 @@
 import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
-from sklearn.cluster import HDBSCAN, AgglomerativeClustering
+from sklearn.cluster import HDBSCAN
 from sklearn.metrics.pairwise import haversine_distances
-
 from utils.constants import AVG_EARTH_RADIUS
 from utils.kernels import bisquare_kernel
 from utils.linalg import center_matrix, ones_vector, row_standardize
@@ -35,13 +34,6 @@ def assign_to_cluster(data, n_clusters):
         cluster_selection_epsilon=0.01,
     )
     cl.fit(rads)
-    # cl = AgglomerativeClustering(
-    #     n_clusters=n_clusters,
-    #     metric="precomputed",
-    #     linkage="average",
-    # )
-    # dmat = haversine_distances(rads, rads) * AVG_EARTH_RADIUS
-    # cl.fit(dmat)
     return cl.labels_
 
 
