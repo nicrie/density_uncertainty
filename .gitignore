@@ -6,6 +6,7 @@ data/sealevel/**/*.nc
 data/d18Ow/**/*.nc
 data/density/**/*.nc
 
+archive/
 figs/
 output/
 

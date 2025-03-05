@@ -2,13 +2,13 @@ name: sigmaT
 channels:
   - conda-forge
 dependencies:
-  - python=3.9
+  - python==3.11
   - bottleneck
   - scipy
-  - xarray
+  - xarray==2023.11.0
   - regionmask
   - cmocean
-  - numpy==1.23
+  - numpy==1.25.2
   - dask
   - pandas
   - statsmodels
@@ -33,7 +33,7 @@ dependencies:
   - openssl
   - arch-py
   - sympy
-  - pymc>=5
+  - pymc==5.8.2
   - numba
   - tbb
   - libpysal
