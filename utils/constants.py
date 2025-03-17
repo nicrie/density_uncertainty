@@ -1,13 +1,15 @@
-AVG_EARTH_RADIUS = 6371.0  # in km
+EXPERIMENTS = ["iloveclim_pi", "echam_mpi_pi", "iloveclim_lgm", "echam_mpi_lgm"]
+EXPERIMENTS_META = {
+    "iloveclim_pi": {"time": "PI", "data": "/simulations/iloveclim"},
+    "echam_mpi_pi": {"time": "PI", "data": "/simulations/echam_mpi"},
+    "iloveclim_lgm": {"time": "LGM", "data": "/simulations/iloveclim"},
+    "echam_mpi_lgm": {"time": "LGM", "data": "/simulations/echam_mpi"},
+}
 
-SPECIES = ["G. bulloides", "N. incompta", "N. pachyderma", "G. ruber", "T. sacculifer"]
-SPECIES_COMBINATIONS = {sp.split()[1]: [sp] for sp in SPECIES}
-SPECIES_COMBINATIONS["all"] = [SPECIES]
-SPECIES_COMBINATIONS["final"] = ["G. ruber", "N. incompta", "T. sacculifer"]
-
-MODELS = ["1", "2", "3"]
-
-EXPERIMENTS = {
-    species: {model: "_".join([species, model]) for model in MODELS}
-    for species in SPECIES_COMBINATIONS
+MAP_SPECIES_IDX = {
+    "ruber": 0,
+    "sacculifer": 1,
+    "bulloides": 2,
+    "pachy_d": 3,
+    "pachy_s": 4,
 }

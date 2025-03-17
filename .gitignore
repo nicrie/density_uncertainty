@@ -4,7 +4,9 @@ data/regression/**/*.nc
 data/esf/**/*.csv
 data/sealevel/**/*.nc
 data/d18Ow/**/*.nc
-data/density/**/*.nc
+data/observations/density/cmems/**/*.nc
+
+*.sh
 
 archive/
 figs/

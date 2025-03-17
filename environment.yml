@@ -1,43 +1,35 @@
-name: sigmaT
+name: paleo_density
 channels:
   - conda-forge
 dependencies:
-  - python==3.11
-  - bottleneck
-  - scipy
-  - xarray==2023.11.0
-  - regionmask
-  - cmocean
-  - numpy==1.25.2
-  - dask
-  - pandas
-  - statsmodels
-  - nc-time-axis
+  - python=3.12
   - cartopy
-  - yaml
-  - ipykernel
-  - matplotlib
   - seaborn
-  - netcdf4
-  - scikit-learn
-  - h5netcdf
-  - cfgrib
-  - zarr
-  - cftime
-  - pynio
-  - xlrd
-  - rasterio
+  - matplotlib
+  - xeofs
+  - pymc
+  - jax
+  - numpyro
+  - ipykernel
   - openpyxl
   - ca-certificates
   - certifi
   - openssl
-  - arch-py
-  - sympy
-  - pymc==5.8.2
+  - ipywidgets
+  - pandas
+  - xarray
+  - numpy=2.1
+  - xarray-einstats
+  - scikit-learn
+  - scipy
+  - statsmodels
+  - dask
+  - bottleneck
+  - jupyter
+  - llvmlite
   - numba
-  - tbb
-  - libpysal
-  - esda
+  - nutpie
+  - regionmask
   - pip:
-    - git+https://github.com/pymc-devs/pymc-experimental.git
-
+    - xarray-regrid
+prefix: /home/nrieger/miniconda3/envs/paleo_density
