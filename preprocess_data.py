@@ -91,6 +91,10 @@ mediterranean = rm.defined_regions.ar6.ocean[["Mediterranean"]]
 iloveclim = iloveclim.where(mediterranean.mask(iloveclim).isnull())
 echam_mpi = echam_mpi.where(mediterranean.mask(echam_mpi).isnull())
 
+# Counter global ice volume effect during LGM
+iloveclim["d18Oc"].loc[{"time": "LGM"}] = iloveclim["d18Oc"].sel(time="LGM") - 1.0
+echam_mpi["d18Oc"].loc[{"time": "LGM"}] = echam_mpi["d18Oc"].sel(time="LGM") - 1.0
+
 # %%
 
 data_prep = xr.DataTree.from_dict(
