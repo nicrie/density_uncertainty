@@ -1,7 +1,4 @@
 # %%
-import xarray as xr
-import xarray_regrid
-
 import arviz as az
 import cartopy.crs as ccrs
 import matplotlib.pyplot as plt
@@ -84,10 +81,17 @@ sim = sim.sel(species=species)
 iloveclim = sim["paleo/iloveclim"].to_dataset().regrid.linear(obs["sigmaT"])
 echam_mpi = sim["paleo/echam_mpi"].to_dataset().regrid.linear(obs["sigmaT"])
 
-
+# Remove the regions without modern observations
 iloveclim = iloveclim.where(has_obs)
 echam_mpi = echam_mpi.where(has_obs)
 
+
+# Remove the Mediterranean Sea
+mediterranean = rm.defined_regions.ar6.ocean[["Mediterranean"]]
+iloveclim = iloveclim.where(mediterranean.mask(iloveclim).isnull())
+echam_mpi = echam_mpi.where(mediterranean.mask(echam_mpi).isnull())
+
+# %%
 
 data_prep = xr.DataTree.from_dict(
     {
