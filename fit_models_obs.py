@@ -239,3 +239,5 @@ for exp in EXPERIMENTS:
 
     all_idata[exp] = idata
     all_reg_results[exp] = reg_result
+
+# %%

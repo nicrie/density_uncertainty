@@ -135,3 +135,5 @@ for exp_name, exp_meta in EXPERIMENTS_META.items():
     # Save results
     idata[exp_name].to_netcdf(f"{exp_dir}/idata.nc")
     dataframe.to_csv(f"{exp_dir}/regression_results.csv")
+
+# %%

@@ -38,7 +38,9 @@ for exp in EXPERIMENTS:
         legend=True,
     )
     plt.savefig(
-        "figs/regression/trace_ext_{:}.png".format(exp), dpi=150, bbox_inches="tight"
+        "figs/regression/sim/trace_ext_{:}.png".format(exp),
+        dpi=150,
+        bbox_inches="tight",
     )
     plt.close()
 
@@ -63,7 +65,7 @@ for exp in EXPERIMENTS:
     plt.xlim(-3, 5)
     plt.title("experiment {:}".format(exp))
     plt.savefig(
-        "figs/regression/posterior_predictive_regression_{:}.png".format(exp),
+        "figs/regression/sim/posterior_predictive_regression_{:}.png".format(exp),
         dpi=150,
         bbox_inches="tight",
     )
@@ -92,7 +94,9 @@ for exp in EXPERIMENTS:
     )
     ax.set_title("Residuals {:}".format(exp))
     plt.savefig(
-        "figs/regression/residuals_{:}.png".format(exp), dpi=500, bbox_inches="tight"
+        "figs/regression/sim/residuals_{:}.png".format(exp),
+        dpi=500,
+        bbox_inches="tight",
     )
     plt.close()
 

@@ -98,3 +98,5 @@ data_prep = xr.DataTree.from_dict(
     }
 )
 data_prep.to_netcdf("data/regression/data_prep.nc")
+
+# %%

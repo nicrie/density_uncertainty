@@ -32,6 +32,8 @@ ilc_density_PI = ilc_density_PI.expand_dims({"time": ["PI"]})
 ilc_density = xr.concat([ilc_density_LGM, ilc_density_PI], dim="time")
 
 iloveclim = xr.Dataset({"d18Oc": ilc_d18Oc, "sigmaT": ilc_density - 1000})
+# Careful! iLOVECLIM has incorect longitude values!
+iloveclim = iloveclim.roll({"lon": 188})
 
 # ECHAM-MPI
 mpi_d18Oc_LGM = xr.open_dataarray(
@@ -56,6 +58,8 @@ mpi_density_PI = mpi_density_PI.expand_dims({"time": ["PI"]})
 mpi_density = xr.concat([mpi_density_LGM, mpi_density_PI], dim="time")
 
 echam_mpi = xr.Dataset({"d18Oc": mpi_d18Oc, "sigmaT": mpi_density - 1000})
+# Careful! ECHAM MPI has incorect longitude values!
+echam_mpi = echam_mpi.roll({"lon": 180})
 
 # %%
 
