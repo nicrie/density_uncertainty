@@ -1,9 +1,7 @@
-EXPERIMENTS = ["iloveclim_pi", "echam_mpi_pi", "iloveclim_lgm", "echam_mpi_lgm"]
+EXPERIMENTS = ["iloveclim", "echam_mpi"]
 EXPERIMENTS_META = {
-    "iloveclim_pi": {"time": "PI", "data": "/simulations/iloveclim"},
-    "echam_mpi_pi": {"time": "PI", "data": "/simulations/echam_mpi"},
-    "iloveclim_lgm": {"time": "LGM", "data": "/simulations/iloveclim"},
-    "echam_mpi_lgm": {"time": "LGM", "data": "/simulations/echam_mpi"},
+    "iloveclim": {"time": "PI", "data": "/simulations/iloveclim"},
+    "echam_mpi": {"time": "PI", "data": "/simulations/echam_mpi"},
 }
 
 MAP_SPECIES_IDX = {

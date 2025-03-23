@@ -12,10 +12,13 @@ from utils.constants import EXPERIMENTS
 
 idata = {}
 reg_results = {}
+reg_results_lgm = {}
 
 for exp in EXPERIMENTS:
-    idata[exp] = az.from_netcdf(f"data/regression/{exp}/idata.nc")
-    reg_results[exp] = pd.read_csv(f"data/regression/{exp}/regression_results.csv")
+    path = f"data/regression/sim/{exp}/"
+    idata[exp] = az.from_netcdf(path + "idata.nc")
+    reg_results[exp] = pd.read_csv(path + "regression_results.csv")
+    reg_results_lgm[exp] = pd.read_csv(path + "regression_results_test.csv")
 
 
 # %%
@@ -54,7 +57,9 @@ for exp in EXPERIMENTS:
         legend=True,
     )
     plt.savefig(
-        "figs/regression/trace_sigma_{:}.png".format(exp), dpi=150, bbox_inches="tight"
+        "figs/regression/sim/trace_sigma_{:}.png".format(exp),
+        dpi=150,
+        bbox_inches="tight",
     )
     plt.suptitle("experiment {:}".format(exp))
     plt.close()
@@ -71,7 +76,7 @@ for exp in EXPERIMENTS:
     )
     plt.close()
 
-    # Residuals plot
+    # Residuals plot (train; PI)
     trans_proj = ccrs.PlateCarree()
     fig = plt.figure(figsize=(7.2, 3), dpi=500)
     ax = fig.add_subplot(1, 1, 1, projection=ccrs.Robinson())
@@ -92,9 +97,38 @@ for exp in EXPERIMENTS:
         ax=ax,
         transform=trans_proj,
     )
-    ax.set_title("Residuals {:}".format(exp))
+    ax.set_title("Residuals {:} (train; PI)".format(exp))
     plt.savefig(
         "figs/regression/sim/residuals_{:}.png".format(exp),
+        dpi=500,
+        bbox_inches="tight",
+    )
+    plt.close()
+
+    # Residuals plot (test; LGM)
+    trans_proj = ccrs.PlateCarree()
+    fig = plt.figure(figsize=(7.2, 3), dpi=500)
+    ax = fig.add_subplot(1, 1, 1, projection=ccrs.Robinson())
+    ax.set_global()
+    ax.coastlines(lw=0.2)
+    ax.add_feature(LAND, facecolor=".8")
+    reg_results_lgm[exp].plot.scatter(
+        x="lon",
+        y="lat",
+        c="residuals",
+        cmap="RdBu",
+        s=10,
+        ec=".3",
+        lw=0.2,
+        vmin=-2,
+        vmax=2,
+        alpha=0.7,
+        ax=ax,
+        transform=trans_proj,
+    )
+    ax.set_title("Residuals {:} (test; LGM)".format(exp))
+    plt.savefig(
+        "figs/regression/sim/residuals_{:}_lgm.png".format(exp),
         dpi=500,
         bbox_inches="tight",
     )
