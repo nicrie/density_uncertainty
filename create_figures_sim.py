@@ -65,10 +65,13 @@ for exp in EXPERIMENTS:
     plt.close()
 
     # Posterior predictive regression plot
-    az.plot_lm(idata=idata[exp], y_hat="sigmaT", y="sigmaT", x="d18Oc")
+    axes = az.plot_lm(idata=idata[exp], y_hat="sigmaT", y="sigmaT", x="d18Oc")
     plt.ylim(17, 32)
     plt.xlim(-3, 5)
     plt.title("experiment {:}".format(exp))
+    reg_results_lgm[exp].plot.scatter(
+        x="d18Oc", y="sigmaT", ax=axes[0][0], zorder=500, s=5, label="LGM"
+    )
     plt.savefig(
         "figs/regression/sim/posterior_predictive_regression_{:}.png".format(exp),
         dpi=150,
