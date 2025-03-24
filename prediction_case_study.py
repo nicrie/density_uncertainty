@@ -1,4 +1,5 @@
 # %%
+import numpy as np
 import xarray as xr
 import arviz as az
 import matplotlib.pyplot as plt
@@ -6,7 +7,7 @@ import pandas as pd
 
 
 # Vectorized prediction function
-def predict_sigmaT_vectorized(d18O, species, beta0, beta1):
+def predict_sigmaT_vectorized(d18O, species, beta0, beta1, sigma, seed=None):
     """
     Make density predictions in a vectorized way using xarray broadcasting
 
@@ -18,6 +19,8 @@ def predict_sigmaT_vectorized(d18O, species, beta0, beta1):
         Species names matching those in beta0 and beta1
     beta0, beta1 : xr.DataArray
         Model parameters with dimensions (chain, draw, species)
+    sigma : xr.DataArray
+        Uncertainty parameter with dimensions (chain, draw, species)
 
     Returns:
     --------
@@ -33,9 +36,20 @@ def predict_sigmaT_vectorized(d18O, species, beta0, beta1):
     # Select the appropriate beta parameters for each species
     b0 = beta0.sel(species=species_da)
     b1 = beta1.sel(species=species_da)
+    s = sigma.sel(species=species_da)
 
     # Apply the linear model - broadcasting happens automatically
     predictions = b0 + b1 * d18O_da
+
+    # Add the uncertainty term
+    rng = np.random.default_rng(seed)
+    predictions = xr.apply_ufunc(
+        rng.normal,
+        predictions,
+        s,
+        kwargs={"size": predictions.shape},
+        dask="parallelized",
+    )
 
     return predictions
 
@@ -46,6 +60,7 @@ def predict_sigmaT_vectorized(d18O, species, beta0, beta1):
 model = az.from_netcdf("data/regression/obs/poly1_hier/idata.nc")
 beta0 = model.posterior.beta0
 beta1 = model.posterior.beta1
+sigma = model.posterior.sigma
 
 test_data = pd.read_csv(
     "data/case_study/d18O_LH_Database.txt",
@@ -61,7 +76,9 @@ test_species = test_data["species"].values
 test_d18O = test_data["d18Oc"].values
 
 # Make predictions
-predictions = predict_sigmaT_vectorized(test_d18O, test_species, beta0, beta1)
+predictions = predict_sigmaT_vectorized(
+    test_d18O, test_species, beta0, beta1, sigma=sigma, seed=123
+)
 
 # Calculate summary statistics
 pred_mean = predictions.mean(dim=["chain", "draw"])
