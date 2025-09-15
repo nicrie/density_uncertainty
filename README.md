@@ -1,14 +1,11 @@
-# Code repository for the paper <TBD>
+# Code for the paper <TBD>
 
-This repository contains the code for the paper <TBD> by <TBD>.
-
-This repository helps you to make predictions of oceanic surface density $\sigma_T$ using your own data. You can find an example of how to use the code in [this notebook](https://github.com/nicrie/density_uncertainty/blob/main/tutorial.ipynb)
-
+This repo contains the code behind <TBD> by <TBD>.
+It helps you predict ocean surface density, $\sigma_T$, from your own data.
 
 ## Installation
 
-The code is written in Python 3. 
-Installing the necessary dependencies to make predictions is easiest with [conda](https://docs.conda.io/en/latest/).
+The project is in Python 3. The easiest way to get the right stack is via [conda](https://docs.conda.io/en/latest/):
 
 
 ```bash
@@ -16,12 +13,9 @@ conda env create -f environment.yml
 conda activate sigmaT
 ```
 
-## Usage
-
-Check out the [example notebook](https://github.com/nicrie/density_uncertainty/blob/main/tutorial.ipynb) to see how to use the code to make predictions of $\sigma_T$.
 
 ## License
-[MIT](https://choosealicense.com/licenses/mit/)
+[Apache 2.0](https://choosealicense.com/licenses/apache-2.0/)
 
 ## Citation
 
