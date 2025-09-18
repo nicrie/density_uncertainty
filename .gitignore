@@ -5,7 +5,7 @@ data/esf/**/*.csv
 data/sealevel/**/*.nc
 data/d18Ow/**/*.nc
 data/observations/density/cmems/**/*.nc
-
+data/case_study/
 *.sh
 
 archive/
