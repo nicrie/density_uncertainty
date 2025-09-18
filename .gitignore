@@ -12,6 +12,8 @@ archive/
 figs/
 output/
 extra/
+utils/datasets.py
+utils/physics.py
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
